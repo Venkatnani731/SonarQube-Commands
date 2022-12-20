@@ -1,0 +1,31 @@
+#All below commands has to run one by one forSonarQube.
+cd /opt/        #Change the Directory to opt
+yum install wget unzip -y       # unzipper is installed
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.6.zip  # zip file of Sonarqube is downloaded.
+sudo amazon-linux-extras install java-openjdk11
+sudo yum install java-1.8.0-openjdk             #Java Environment is created.
+java -version           #shows version of Java
+unzip sonarqube-7.6.zip         #unzipping downloaded file.
+useradd sonar           #create a user with name'sonar'
+visudo          #Eidtable format permission file gets opened.
+#Make the following changes in that file.
+#Add this line under root line.
+sonar   ALL=(ALL)       NOPASSWD=(ALL)
+#Save and exit and then Run following Commands
+chown -R sonar:sonar /opt/sonarqube-7.6
+chmod -R 775 /opt/sonarqube-7.6
+ls -l
+su -sonar
+cd /opt/
+ls -l
+cd sonarqube-7.6
+ls
+cd bin
+ls-l
+cd linux-x86-64
+ls
+./sonar.sh start
+./sonar.sh status
+#Above all will help in creating SonarQube
+#copy the ec2 instance url and type it in following format to get access to SonarQube in browswer.
+#<ec2-url>:9000
